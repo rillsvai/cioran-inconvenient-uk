@@ -26,3 +26,8 @@ make clean
 - Ne pas ajouter de page de notes privées, TODO imprimé, avertissement de brouillon ou texte explicatif visible dans le PDF.
 - Les commentaires de travail doivent rester en commentaires LaTeX (`% ...`) ou dans `notes/`, pas dans le rendu.
 - Les fragments traduits vont dans `chapters/section-*.tex` avec `aphorism` et `asterism`.
+
+## Références linguistiques
+
+- Pour l'orthographe, la ponctuation et les choix normatifs ukrainiens, consulter d'abord le Правопис 2019 : https://2019.pravopys.net/
+- Si une section de ponctuation n'est pas encore publiée dans l'interface 2019, utiliser en second recours l'ancienne page Pravopys correspondante et noter ce statut.
