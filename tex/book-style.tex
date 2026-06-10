@@ -1,0 +1,116 @@
+\usepackage{iftex}
+
+\ifPDFTeX
+  \PackageError{book-style}{Use LuaLaTeX or XeLaTeX for this project}{Run latexmk -lualatex main.tex}
+\fi
+
+\usepackage{fontspec}
+\usepackage[ukrainian,french,english]{babel}
+\usepackage[
+  paperwidth=148mm,
+  paperheight=210mm,
+  inner=23mm,
+  outer=23mm,
+  top=20mm,
+  bottom=24mm,
+  headsep=8mm
+]{geometry}
+\usepackage{microtype}
+\usepackage{setspace}
+\usepackage{titlesec}
+\usepackage{titling}
+\usepackage{fancyhdr}
+\usepackage{tocloft}
+\usepackage{xparse}
+\usepackage{etoolbox}
+\usepackage{needspace}
+\usepackage{hyperref}
+
+\IfFontExistsTF{Noto Serif}{
+  \setmainfont{Noto Serif}
+}{
+  \IfFontExistsTF{DejaVu Serif}{
+    \setmainfont{DejaVu Serif}
+  }{
+    \setmainfont{Liberation Serif}
+  }
+}
+
+\IfFontExistsTF{Noto Sans}{
+  \setsansfont{Noto Sans}
+}{
+  \IfFontExistsTF{DejaVu Sans}{
+    \setsansfont{DejaVu Sans}
+  }{
+    \setsansfont{Liberation Sans}
+  }
+}
+
+\setstretch{1.07}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+\raggedbottom
+\frenchspacing
+
+\hypersetup{
+  hidelinks,
+  pdftitle={\UkrainianTitle},
+  pdfauthor={\BookAuthor},
+  pdfsubject={\BookSubtitle}
+}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[C]{\small\thepage\quad \OriginalTitle}
+\renewcommand{\headrulewidth}{0pt}
+
+\fancypagestyle{plain}{
+  \fancyhf{}
+  \fancyhead[C]{\small\thepage\quad \OriginalTitle}
+  \renewcommand{\headrulewidth}{0pt}
+}
+
+\renewcommand{\thechapter}{\Roman{chapter}}
+
+\titleformat{\chapter}[display]
+  {\normalfont\Large\centering}
+  {\thechapter}
+  {0pt}
+  {}
+
+\titlespacing*{\chapter}{0pt}{0.18\textheight}{3.5\baselineskip}
+
+\renewcommand{\cftchapfont}{\normalfont}
+\renewcommand{\cftchappagefont}{\normalfont}
+\renewcommand{\cftchapleader}{\cftdotfill{\cftdotsep}}
+\setlength{\cftbeforechapskip}{0.35\baselineskip}
+
+\NewDocumentCommand{\sectiontitle}{m}{%
+  \chapter*{#1}%
+  \addcontentsline{toc}{chapter}{#1}%
+}
+
+\NewDocumentEnvironment{aphorism}{+b}{%
+  \Needspace{4\baselineskip}%
+  \begingroup
+  \selectlanguage{ukrainian}%
+  \setlength{\parindent}{0pt}%
+  \setlength{\parskip}{0pt}%
+  #1\par
+  \endgroup
+}{}
+
+\NewDocumentCommand{\asterism}{}{%
+  \par\vspace{0.95\baselineskip}%
+  {\centering *\par}%
+  \vspace{0.95\baselineskip}%
+}
+
+\NewDocumentEnvironment{sourcefragment}{+b}{%
+  \begingroup
+  \selectlanguage{french}%
+  \small
+  \itshape
+  #1\par
+  \endgroup
+}{}
