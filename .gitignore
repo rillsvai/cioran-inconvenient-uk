@@ -10,4 +10,4 @@
 *.run.xml
 *.synctex.gz
 *.toc
-
+!original.pdf
